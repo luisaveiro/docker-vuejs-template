@@ -21,7 +21,7 @@ services:
       - ${VUE_UI_PORT}:${VUE_UI_PORT}
       - 8080:8080
     volumes:
-      - ./code:${PROJECT_PATH}
+      - ./code:${PROJECT_PATH}:consistent
     # Override Dockerfile default command 
     command: ["vue", "ui", "--headless", "--port", "${VUE_UI_PORT}", "--host", "${VUE_UI_HOST}"]
 
