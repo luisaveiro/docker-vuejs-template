@@ -5,7 +5,7 @@ clean:
 	docker rm ${CONTAINER_NAME}
 	docker rmi ${IMAGE_NAME}
 	docker network rm ${NETWORK}
-	docker volume rm "${CONTAINER_NAME}_node_modules"
+	docker volume rm "${CONTAINER_NAME}-node_modules"
 
 # Build Docker image
 image:
