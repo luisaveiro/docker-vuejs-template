@@ -20,10 +20,10 @@
 
 ## About
 
-These instructions will get you through the bootstrap phase of creating a containerized Vue.js application with Docker Compose.
+These instructions will get you through the bootstrap phase of creating a containerised Vue.js application with Docker Compose.
 
 ## Disclaimer
-**Please note:** The Dockerfile provided is intended for use in local development environments. **Please do not** use this Dockerfile to deploy your Vue.js project in production environments. Please visit [Vue CLI Deployment Documentation](https://cli.vuejs.org/guide/deployment.html#platform-guides) for deploying on various platforms.
+**Please note:** The Dockerfile provided is intended for use in local development environments. **Please do not** use this Dockerfile to deploy your Vue.js application in production environments. Please visit [Vue CLI Deployment Documentation](https://cli.vuejs.org/guide/deployment.html#platform-guides) for deploying on various platforms.
 
 ## Getting started
 
@@ -36,7 +36,7 @@ For new projects, click on ***use this template*** button to create a new reposi
 
 ## How To Use
 
-Below is how your Vue.js application would be structured. Your Vue.js code will be stored in the `code` folder.
+Below is how your Vue.js project repository is structured. Your Vue.js code will be stored in the `code` folder.
 
 ```
 .
@@ -90,7 +90,7 @@ website.local | 🌠  Ready on http://0.0.0.0:8000
 website.local | 8000
 ```
 
-After the Docker container starts, navigate to http://localhost:8000 in your web browser to access the Vue UI web server.
+After the Docker container has started, navigate to http://localhost:8000 in your web browser to access the Vue UI web server.
 
 #### <ins>Creating a new Vue.js project</ins>
 Do not use the Vue UI web server to create a new project [See known issue #1](#known-issues). Instead you need to use the Vue CLI `create` command.
@@ -103,7 +103,7 @@ $ make ssh
 /var/www/website
 ```
 
-Once you have accessed your Docker container terminal, you want to run the `vue create .` command. This will create a new Vue.js application in the current directory, which is the volume mounted to your `code` folder
+Once you have accessed your Docker container terminal, you will need to run the `vue create .` command. This will create a new Vue.js application in the current directory, which is the volume mounted to your `code` folder.
 
 ```bash
 $ vue create .
@@ -132,11 +132,11 @@ Once Vue CLI has created your new Vue.js application, you will able to access yo
 
 #### <ins>Import Vue.js project into Vue UI</ins>
 
-Once you have a Vue.js project, you can import your Vue.js project using Vue UI import function.
+Once you have a Vue.js project (new or existing), you can import your Vue.js project using Vue UI import function. You will be able to see all the Vue UI functionality for you Vue.js application.
 
 #### <ins>Enabling Hot-Reloading with vue-cli-service serve</ins>
 
-To enable Hot-Reloading when using the serve functionality, you need to include `devServer.watchOptions` in your `vue.config.js` file. This template includes a `vue.config.js` file in the `code` folder or you can copy the code below.
+To enable Hot-Reloading when using the **Vue UI serve task**; you will need to include `devServer.watchOptions` in your `vue.config.js` file. This template includes a `vue.config.js` file in the `code` folder or you can copy the code below.
 
 ```javascript
 module.exports = {
@@ -165,13 +165,13 @@ This template includes `Makefile`. A Makefile is a file containing a set of dire
 
 <b>1. Vue UI is unable to generate a new project in current directory.</b>
 
-This is a limitation of Vue UI. [GitHub vue-cli issue #1509](https://github.com/vuejs/vue-cli/issues/1509#issuecomment-436707488).
+This is a limitation of Vue UI, please visit [GitHub vue-cli issue #1509](https://github.com/vuejs/vue-cli/issues/1509#issuecomment-436707488).
 
 **[Solution]** Access Docker container terminal and run `vue create .` command.
 
-<b>2. Stopping `serve` task causes the Vue UI server to crash and stops the docker container.</b>
+<b>2. Stopping Vue UI `serve task` causes the Vue UI server to crash and stops the docker container.</b>
 
-It seems the development server which is used by the `serve` task is linked to Vue UI. Below is the log of the Vue UI during the crash.
+It seems the development server which is used by the `serve task` is linked to Vue UI web server. Below is the log of the Vue UI during the crash.
 
 ```bash
 website.local | events.js:291
