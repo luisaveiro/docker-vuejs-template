@@ -197,6 +197,10 @@ website.local exited with code 1
 
 **[Solution]** re-run `docker-compose up` to have everything running again.
 
+<b>3. Hot-Reloading with vue-cli-service serve is slow.</b>
+
+This is caused by the host-container file system configuration. [Docker documentation](https://docs.docker.com/docker-for-mac/osxfs-caching/#performance-implications-of-host-container-file-system-consistency) provides information on Docker implementations of volume mount.
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
