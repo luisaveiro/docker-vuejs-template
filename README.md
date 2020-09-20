@@ -197,10 +197,6 @@ website.local exited with code 1
 
 **[Solution]** re-run `docker-compose up` to have everything running again.
 
-<b>3. `node_modules` is not mounted in the `code/node_modules`.</b>
-
-For new Vue.js projects, `node_modules` folder will not be populated with your dependencies. This happens because of the Docker Compose file mounting `node_modules` folder to a different volume. Without this volume, yarn is unable to install your dependencies in the Docker Container.
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.

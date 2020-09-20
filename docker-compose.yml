@@ -22,7 +22,6 @@ services:
       - 8080:8080
     volumes:
       - ./code:${PROJECT_PATH}
-      - node_modules:${PROJECT_PATH}/node_modules
     # Override Dockerfile default command 
     command: ["vue", "ui", "--headless", "--port", "${VUE_UI_PORT}", "--host", "${VUE_UI_HOST}"]
 
@@ -31,7 +30,3 @@ networks:
   local:
     name: ${NETWORK}
 
-# Docker volumes
-volumes: 
-  node_modules:
-    name: ${CONTAINER_NAME}-node_modules
