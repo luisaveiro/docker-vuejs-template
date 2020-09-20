@@ -13,6 +13,7 @@
     <a href="#disclaimer">Disclaimer</a> •
     <a href="#getting-started">Getting Started</a> •
     <a href="#how-to-use">How To Use</a> •
+    <a href="#make-commands">Make Commands</a> •
     <a href="#known-issues">Known Issues</a> •
     <a href="#license">License</a>
 </p>
@@ -133,6 +134,33 @@ Once Vue CLI has created your new Vue.js application, you will able to access yo
 
 Once you have a Vue.js project, you can import your Vue.js project using Vue UI import function.
 
+#### <ins>Enabling Hot-Reloading with vue-cli-service serve</ins>
+
+To enable Hot-Reloading when using the serve functionality, you need to include `devServer.watchOptions` in your `vue.config.js` file. This template includes a `vue.config.js` file in the `code` folder or you can copy the code below.
+
+```javascript
+module.exports = {
+  devServer: {
+    watchOptions: {
+      poll: true
+    }
+  }
+}
+```
+
+## Make Commands
+
+This template includes `Makefile`. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal. The following commands are available.
+
+| # 	| Command      	| Description                                             	|
+|---	|--------------	|---------------------------------------------------------	|
+| 1 	| make clean   	| Remove project Docker container, image, network, volume 	|
+| 2 	| make image   	| Build Docker image                                      	|
+| 3 	| make publish 	| Publish Docker image to Docker Hub                      	|
+| 4 	| make serve   	| Run Docker container without Docker compose             	|
+| 5 	| make ssh     	| Access Docker container terminal.                       	|
+| 6 	| make stop    	| Stop Docker container                                   	|
+
 ## Known issues
 
 <b>1. Vue UI is unable to generate a new project in current directory.</b>
@@ -170,6 +198,8 @@ website.local exited with code 1
 **[Solution]** re-run `docker-compose up` to have everything running again.
 
 <b>3. `node_modules` is not mounted in the `code/node_modules`.</b>
+
+For new Vue.js projects, `node_modules` folder will not be populated with your dependencies. This happens because of the Docker Compose file mounting `node_modules` folder to a different volume. Without this volume, yarn is unable to install your dependencies in the Docker Container.
 
 ## License
 
