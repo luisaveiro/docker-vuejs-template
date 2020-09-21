@@ -201,6 +201,8 @@ website.local exited with code 1
 
 This is caused by the host-container file system configuration. [Docker documentation](https://docs.docker.com/docker-for-mac/osxfs-caching/#performance-implications-of-host-container-file-system-consistency) provides information on Docker implementations of volume mount.
 
+**[Solution]** Access Docker container terminal and run `yarn cache clean` command. Running this command will clear the global cache. It will be populated again the next time `yarn` or `yarn install` is run.
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
@@ -208,7 +210,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 ---
 
 <p align="center">
-  <a href="https://www.luisaveiro.com" target="_blank">luisaveiro.com</a> •
   <a href="http://github.com/luisaveiro" target="_blank">GitHub</a> •
   <a href="https://uk.linkedin.com/in/luisaveiro" target="_blank">LinkedIn</a> •
   <a href="https://twitter.com/luisdeaveiro" target="_blank">Twitter</a>
