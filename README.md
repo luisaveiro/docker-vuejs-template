@@ -72,10 +72,11 @@ Your **.env** needs to have the following environment variables.
 | 7 	| VUE_UI_PORT     	| Port used for the UI server                   	| 8000          	|
 | 8 	| VUE_UI_HOST     	| Host used for the UI server                   	| 0.0.0.0       	|
 
-Once you have updated the **.env** as per your requirements. You can run the `docker compose up` command to create your Docker environment.
+Once you have updated the **.env** as per your requirements. You can run the `docker compose up` command or use the `make start-dev-server` alias command to create your Docker environment.
 
 ```bash
-$ docker-compose up 
+$ make start-dev-server
+docker-compose -f docker-compose.yml up
 Creating network "front-end" with the default driver
 Creating volume "website.local_node_modules" with default driver
 Building web
@@ -152,14 +153,16 @@ module.exports = {
 
 This template includes `Makefile`. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal. The following commands are available.
 
-| # 	| Command      	| Description                                             	|
-|---	|--------------	|---------------------------------------------------------	|
-| 1 	| make clean   	| Remove project Docker container, image, network, volume 	|
-| 2 	| make image   	| Build Docker image                                      	|
-| 3 	| make publish 	| Publish Docker image to Docker Hub                      	|
-| 4 	| make serve   	| Run Docker container without Docker compose             	|
-| 5 	| make ssh     	| Access Docker container terminal.                       	|
-| 6 	| make stop    	| Stop Docker container                                   	|
+| # 	| Command                 	| Description                                             	|
+|---	|-------------------------	|---------------------------------------------------------	|
+| 1 	| make clean              	| Remove project Docker container, image, network, volume 	|
+| 2 	| make image              	| Build Docker image                                      	|
+| 3 	| make publish            	| Publish Docker image to Docker Hub                      	|
+| 4 	| make rebuild-dev-server 	| Rebuild Docker image and container with Docker compose  	|
+| 5 	| make start-dev-server   	| Start Docker container with Docker compose              	|
+| 6 	| make serve              	| Run Docker container without Docker compose             	|
+| 7 	| make ssh                	| Access Docker container terminal.                       	|
+| 8 	| make stop               	| Stop Docker container                                   	|
 
 ## Known issues
 
@@ -195,7 +198,7 @@ website.local | }
 website.local exited with code 1
 ```
 
-**[Solution]** re-run `docker-compose up` to have everything running again.
+**[Solution]** re-run `docker-compose up` or `make start-dev-server` command to have everything running again.
 
 <b>3. Hot-Reloading with vue-cli-service serve is slow.</b>
 
