@@ -72,7 +72,7 @@ Your **.env** needs to have the following environment variables.
 | 7 	| VUE_UI_PORT     	| Port used for the UI server                   	| 8000          	|
 | 8 	| VUE_UI_HOST     	| Host used for the UI server                   	| 0.0.0.0       	|
 
-Once you have updated the **.env** as per your requirements. You can run the `docker compose up` command or use the `make start-dev-server` alias command to create your Docker environment.
+Once you have updated the **.env** as per your requirements. You can run `docker compose up` or use the `make start-dev-server` alias command to create your Docker environment.
 
 ```bash
 $ make start-dev-server
@@ -166,13 +166,16 @@ This template includes `Makefile`. A Makefile is a file containing a set of dire
 
 ## Known issues
 
-<b>1. Vue UI is unable to generate a new project in current directory.</b>
+<details>
+<summary><strong>1. Vue UI is unable to generate a new project in current directory.</strong></summary>
 
 This is a limitation of Vue UI, please visit [GitHub vue-cli issue #1509](https://github.com/vuejs/vue-cli/issues/1509#issuecomment-436707488).
 
 **[Solution]** Access Docker container terminal and run `vue create .` command.
+</details>
 
-<b>2. Stopping Vue UI `serve task` causes the Vue UI server to crash and stops the docker container.</b>
+<details>
+<summary><strong>2. Stopping Vue UI `serve task` causes the Vue UI server to crash and stops the docker container.</strong></summary>
 
 It seems the development server which is used by the `serve task` is linked to Vue UI web server. Below is the log of the Vue UI during the crash.
 
@@ -199,12 +202,15 @@ website.local exited with code 1
 ```
 
 **[Solution]** re-run `docker-compose up` or `make start-dev-server` command to have everything running again.
+</details>
 
-<b>3. Hot-Reloading with vue-cli-service serve is slow.</b>
+<details>
+<summary><strong>3. Hot-Reloading with vue-cli-service serve is slow.</strong></summary>
 
 This is caused by the host-container file system configuration. [Docker documentation](https://docs.docker.com/docker-for-mac/osxfs-caching/#performance-implications-of-host-container-file-system-consistency) provides information on Docker implementations of volume mount.
 
 **[Solution]** Access Docker container terminal and run `yarn cache clean` command. Running this command will clear the global cache. It will be populated again the next time `yarn` or `yarn install` is run.
+</details>
 
 ## License
 
