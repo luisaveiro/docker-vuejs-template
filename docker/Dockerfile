@@ -2,11 +2,13 @@
 FROM node:14.11.0-alpine3.12
 
 # Provide default arguments if image was not built by docker compose.
+ARG CLEAN_YARN_CACHE=false
 ARG ENABLE_TYPESCRIPT=false
 ARG HOST=0.0.0.0
 ARG PROJECT_PATH=/project
 
 # Environment variables
+ENV CLEAN_YARN_CACHE=$CLEAN_YARN_CACHE
 ENV ENABLE_TYPESCRIPT=$ENABLE_TYPESCRIPT
 ENV HOST=$HOST
 ENV PROJECT_PATH=$PROJECT_PATH
@@ -25,5 +27,8 @@ RUN if [ "${ENABLE_TYPESCRIPT}" = "true" ]; then yarn global add typescript; fi
 
 # If existing vue project, install dependencies
 RUN if [ -f package.json ]; then yarn install; fi
+
+# Clean Yarn global cache
+RUN if [ "${CLEAN_YARN_CACHE}" = "true" ]; then yarn cache clean; fi
 
 CMD ["yarn", "run", "serve"]

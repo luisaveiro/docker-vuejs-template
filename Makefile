@@ -6,6 +6,10 @@ clean:
 	docker rmi ${IMAGE_NAME}
 	docker network rm ${NETWORK}
 
+# Clean Yarn global cache
+clean-yarn-cache:
+	docker exec -t -i ${CONTAINER_NAME} yarn cache clean
+
 # Build Docker image
 image:
 	docker build -f docker/Dockerfile -t ${IMAGE_NAME} code
