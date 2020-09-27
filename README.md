@@ -14,6 +14,7 @@
     <a href="#getting-started">Getting Started</a> •
     <a href="#how-to-use">How To Use</a> •
     <a href="#make-commands">Make Commands</a> •
+    <a href="#useful-tips">Useful Tips</a> •
     <a href="#known-issues">Known Issues</a> •
     <a href="#license">License</a>
 </p>
@@ -22,8 +23,17 @@
 
 These instructions will get you through the bootstrap phase of creating a containerised Vue.js application with Docker Compose.
 
+This GitHub template will setup a Docker image with the following packages
+
+- Node (Alpine)
+- Yarn
+- Vue CLI
+- TypeScript
+
 ## Disclaimer
-**Please note:** The Dockerfile provided is intended for use in local development environments. **Please do not** use this Dockerfile to deploy your Vue.js application in production environments. Please visit [Vue CLI Deployment Documentation](https://cli.vuejs.org/guide/deployment.html#platform-guides) for deploying on various platforms.
+**Please note:** The Dockerfile provided is intended for use in local development environments. **Please do not** use this Dockerfile to deploy your Vue.js application in production environments. 
+
+Please visit [Vue CLI Deployment Documentation](https://cli.vuejs.org/guide/deployment.html#platform-guides) for instructions on how to deploy on various platforms.
 
 ## Getting started
 
@@ -32,9 +42,12 @@ Make sure that you have Docker and Docker Compose installed
 - Windows or macOS: [Install Docker Desktop](https://www.docker.com/get-started)
 - Linux: [Install Docker](https://www.docker.com/get-started) and then [Docker Compose](https://github.com/docker/compose)
 
-For new projects, click on ***use this template*** button to create a new repository with this GitHub template.
-
 ## How To Use
+
+#### <ins>Creating a repository from this GitHub template</ins>
+
+To create new projects using this GitHub template, you can click on the ***use this template*** button to create a new repository with this GitHub template.
+
 
 Below is how your Vue.js project repository is structured. Your Vue.js code will be stored in the `code` folder.
 
@@ -52,7 +65,9 @@ Below is how your Vue.js project repository is structured. Your Vue.js code will
 
 #### <ins>Setup Docker environment</ins>
 
-Before you setup a new Vue.js application, you will need to create an **.env** file for the Docker Compose file to use. This template includes a **.env.example** which you can copy from.
+Before you setup a new Vue.js application, you will need to create an **.env** file for the Docker Compose file to use. This will allow you to customise your docker setup without having to manually override the Dockerfile and Docker Compose file.
+
+This GitHub template includes a **.env.example** which you can copy from. You can run the following command in your terminal.
 
 ```bash
 # Create .env from .env.example.
@@ -61,18 +76,25 @@ $ cp .env.example .env
 
 Your **.env** needs to have the following environment variables.
 
-| # 	| Variable        	| Description                                   	| Example Value 	|
-|---	|-----------------	|-----------------------------------------------	|---------------	|
-| 1 	| DOCKER_USERNAME 	| Docker hub username                           	| luisaveiro    	|
-| 2 	| PROJECT_NAME    	| Project name                                  	| website       	|
-| 3 	| CONTAINER_NAME  	| Docker container name                         	| website.local 	|
-| 4 	| IMAGE_NAME      	| Image tag                                     	| website       	|
-| 5 	| PROJECT_PATH    	| Project directory in Docker image & container 	| website       	|
-| 6 	| NETWORK         	| Docker container network                      	| front-end     	|
-| 7 	| VUE_UI_PORT     	| Port used for the UI server                   	| 8000          	|
-| 8 	| VUE_UI_HOST     	| Host used for the UI server                   	| 0.0.0.0       	|
+
+| # 	| Variable          	| Description                                   	| Example Value 	|
+|---	|-------------------	|-----------------------------------------------	|---------------	|
+| 1 	| DOCKER_USERNAME   	| Docker hub username                           	| luisaveiro    	|
+| 2 	| PROJECT_NAME      	| Project name                                  	| website       	|
+| 3 	| CONTAINER_NAME    	| Docker container name                         	| website.local 	|
+| 4 	| IMAGE_NAME        	| Image tag                                     	| website       	|
+| 5 	| PROJECT_PATH      	| Project directory in Docker image & container 	| website       	|
+| 6 	| ENABLE_TYPESCRIPT 	| Add TypeScript support in Docker image        	| true          	|
+| 7 	| NETWORK           	| Docker container network                      	| front-end     	|
+| 8 	| VUE_UI_PORT       	| Port used for the UI server                   	| 8000          	|
+| 9 	| VUE_UI_HOST       	| Host used for the UI server                   	| 0.0.0.0       	|
+
+#### <ins>Running Docker container</ins>
 
 Once you have updated the **.env** as per your requirements. You can run `docker compose up` or use the `make start-dev-server` alias command to create your Docker environment.
+
+<details>
+<summary><strong>Example of the terminal output</strong></summary>
 
 ```bash
 $ make start-dev-server
@@ -91,10 +113,12 @@ website.local | 🌠  Ready on http://0.0.0.0:8000
 website.local | 8000
 ```
 
-After the Docker container has started, navigate to http://localhost:8000 in your web browser to access the Vue UI web server.
+</details>
+
+Once Docker compase as started your Docker Container, you can navigate to http://localhost:&lt;port&gt; in your web browser to access the Vue UI web server.
 
 #### <ins>Creating a new Vue.js project</ins>
-Do not use the Vue UI web server to create a new project [See known issue #1](#known-issues). Instead you need to use the Vue CLI `create` command.
+Please do not use the Vue UI to create a new project [See known issue #1](#known-issues). Instead you need to use the Vue CLI `create` command inside the Docker container.
 
 You can access the Docker container terminal by using the `make ssh` alias command.
 
@@ -105,6 +129,9 @@ $ make ssh
 ```
 
 Once you have accessed your Docker container terminal, you will need to run the `vue create .` command. This will create a new Vue.js application in the current directory, which is the volume mounted to your `code` folder.
+
+<details>
+<summary><strong>Example of the terminal output</strong></summary>
 
 ```bash
 $ vue create .
@@ -129,40 +156,59 @@ Done in 15.19s.
  $ yarn serve
 ```
 
+</details>
+
 Once Vue CLI has created your new Vue.js application, you will able to access your code in the `code` folder of your repository.
 
 #### <ins>Import Vue.js project into Vue UI</ins>
 
-Once you have a Vue.js project (new or existing), you can import your Vue.js project using Vue UI import function. You will be able to see all the Vue UI functionality for you Vue.js application.
+Once you have a Vue.js project (new or existing), you can import your Vue.js project using Vue UI import function. You will be able to use all the Vue UI functionality for you Vue.js application.
 
 #### <ins>Enabling Hot-Reloading with vue-cli-service serve</ins>
 
-To enable Hot-Reloading when using the **Vue UI serve task**; you will need to include `devServer.watchOptions` in your `vue.config.js` file. This template includes a `vue.config.js` file in the `code` folder or you can copy the code below.
+To enable Hot-Reloading in your Docker container when using the **Vue UI serve task**; you will need to include `devServer.watchOptions` in your `vue.config.js` file. This GitHub template includes a `vue.config.js` file in the `code` folder or you can copy the code below.
 
 ```javascript
 module.exports = {
   devServer: {
     watchOptions: {
-      poll: true
-    }
-  }
-}
+      poll: true,
+    },
+  },
+};
 ```
 
 ## Make Commands
 
-This template includes `Makefile`. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal. The following commands are available.
+This GitHub template includes `Makefile`. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal. The following commands are available for you interact with your Docker environment.
 
 | # 	| Command                 	| Description                                             	|
 |---	|-------------------------	|---------------------------------------------------------	|
 | 1 	| make clean              	| Remove project Docker container, image, network, volume 	|
-| 2 	| make image              	| Build Docker image                                      	|
-| 3 	| make publish            	| Publish Docker image to Docker Hub                      	|
-| 4 	| make rebuild-dev-server 	| Rebuild Docker image and container with Docker compose  	|
-| 5 	| make start-dev-server   	| Start Docker container with Docker compose              	|
-| 6 	| make serve              	| Run Docker container without Docker compose             	|
-| 7 	| make ssh                	| Access Docker container terminal.                       	|
-| 8 	| make stop               	| Stop Docker container                                   	|
+| 2 	| make clean-yarn-cache   	| Clean Yarn global cache                                 	|
+| 3 	| make image              	| Build Docker image                                      	|
+| 4 	| make publish            	| Publish Docker image to Docker Hub                      	|
+| 5 	| make rebuild-dev-server 	| Rebuild Docker image and container with Docker compose  	|
+| 6 	| make start-dev-server   	| Start Docker container with Docker compose              	|
+| 7 	| make serve              	| Run Docker container without Docker compose             	|
+| 8 	| make ssh                	| Access Docker container terminal.                       	|
+| 9 	| make stop               	| Stop Docker container                                   	|
+
+## Useful Tips
+
+<details>
+<summary><strong>1. Visual Studio Code Extensions</strong></summary>
+
+If you use VS Code as your Development IDE, I recommend the following extensions.
+
+#### <ins>Coding with Vue.js</ins>
+- [Vetur (By Pine Wu)](https://marketplace.visualstudio.com/items?itemName=octref.vetur) &equals;&gt; Vue tooling for VS Code
+
+#### <ins>Docker management</ins>
+- [Docker (By Microsoft)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) &equals;&gt; Makes it easy to create, manage, and debug containerized applications.
+- [Remote - Containers (By Microsoft)](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) &equals;&gt; Open any folder or repository inside a Docker container and take advantage of Visual Studio Code's full feature set.
+
+</details>
 
 ## Known issues
 
@@ -201,7 +247,7 @@ website.local | }
 website.local exited with code 1
 ```
 
-**[Solution]** re-run `docker-compose up` or `make start-dev-server` command to have everything running again.
+**[Solution]** re-run `docker-compose up` or `make start-dev-server` alias command to have everything running again.
 </details>
 
 <details>
@@ -209,7 +255,7 @@ website.local exited with code 1
 
 This is caused by the host-container file system configuration. [Docker documentation](https://docs.docker.com/docker-for-mac/osxfs-caching/#performance-implications-of-host-container-file-system-consistency) provides information on Docker implementations of volume mount.
 
-**[Solution]** Access Docker container terminal and run `yarn cache clean` command. Running this command will clear the global cache. It will be populated again the next time `yarn` or `yarn install` is run.
+**[Solution]** run `make clean-yarn-cache` alias command or access the Docker container terminal and run `yarn cache clean` command. Running this command will clear the global cache. It will be populated again the next time `yarn` or `yarn install` is run.
 </details>
 
 ## License
