@@ -115,7 +115,7 @@ website.local | 8000
 
 </details>
 
-Once Docker compase as started your Docker Container, you can navigate to http://localhost:&lt;port&gt; in your web browser to access the Vue UI web server.
+Once Docker compase as started your Docker Container, you can navigate to http://localhost&colon; &lt;port&gt; in your web browser to access the Vue UI web server.
 
 #### <ins>Creating a new Vue.js project</ins>
 Please do not use the Vue UI to create a new project [See known issue #1](#known-issues). Instead you need to use the Vue CLI `create` command inside the Docker container.
