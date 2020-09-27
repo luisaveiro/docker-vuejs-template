@@ -11,6 +11,7 @@ services:
       context: code
       dockerfile: ../docker/Dockerfile
       args:
+        ENABLE_TYPESCRIPT: ${ENABLE_TYPESCRIPT}
         HOST: ${VUE_UI_HOST}
         PROJECT_PATH: ${PROJECT_PATH}
     networks: 
