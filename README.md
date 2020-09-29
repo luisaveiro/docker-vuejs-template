@@ -25,10 +25,10 @@ These instructions will get you through the bootstrap phase of creating a contai
 
 This GitHub template will setup a Docker image with the following packages
 
-- Node (Alpine)
-- Yarn
-- Vue CLI
-- TypeScript
+- [Node (Alpine)](https://hub.docker.com/_/node)
+- [Yarn](https://yarnpkg.com/)
+- [Vue CLI](https://cli.vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Disclaimer
 **Please note:** The Dockerfile provided is intended for use in local development environments. **Please do not** use this Dockerfile to deploy your Vue.js application in production environments. 
@@ -207,6 +207,29 @@ If you use VS Code as your Development IDE, I recommend the following extensions
 #### <ins>Docker management</ins>
 - [Docker (By Microsoft)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) &equals;&gt; Makes it easy to create, manage, and debug containerized applications.
 - [Remote - Containers (By Microsoft)](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) &equals;&gt; Open any folder or repository inside a Docker container and take advantage of Visual Studio Code's full feature set.
+
+</details>
+
+<details>
+<summary><strong>2. Self-assigned SSL Certificates</strong></summary>
+
+If you want to use HTTPS with your Vue.js application and not have browsers display a warning message about invalid SSL Certificate, you can use [mkcert (By FiloSottile)](https://github.com/FiloSottile/mkcert) tool. 
+
+[mkcert](https://github.com/FiloSottile/mkcert) is a simple tool for making locally-trusted development certificates. Once you have created you SSL Certificate with mkcert, you will need to copy the files into your Docker container and update your `vue.config.js` file. 
+
+Below is an example of the additional settings you need to include.
+
+```javascript
+module.exports = {
+  devServer: {
+    http2: true,
+    https: {
+      key: fs.readFileSync('/path/to/local.key'),
+      cert: fs.readFileSync('/path/to/local.crt'),
+    },
+  },
+};
+```
 
 </details>
 
