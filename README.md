@@ -182,17 +182,17 @@ module.exports = {
 
 This GitHub template includes `Makefile`. A Makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal. The following commands are available for you interact with your Docker environment.
 
-| # 	| Command                 	| Description                                             	|
-|---	|-------------------------	|---------------------------------------------------------	|
-| 1 	| make clean              	| Remove project Docker container, image, network, volume 	|
-| 2 	| make clean-yarn-cache   	| Clean Yarn global cache                                 	|
-| 3 	| make image              	| Build Docker image                                      	|
-| 4 	| make publish            	| Publish Docker image to Docker Hub                      	|
-| 5 	| make rebuild-dev-server 	| Rebuild Docker image and container with Docker compose  	|
-| 6 	| make start-dev-server   	| Start Docker container with Docker compose              	|
-| 7 	| make serve              	| Run Docker container without Docker compose             	|
-| 8 	| make ssh                	| Access Docker container terminal.                       	|
-| 9 	| make stop               	| Stop Docker container                                   	|
+| # 	| Command               	| Description                                             	|
+|---	|-----------------------	|---------------------------------------------------------	|
+| 1 	| make clean            	| Remove project Docker container, image, network, volume 	|
+| 2 	| make clean-yarn-cache 	| Clean Yarn global cache                                 	|
+| 3 	| make dev-rebuild      	| Rebuild Docker image and container with Docker compose  	|
+| 4 	| make dev-start        	| Start Docker container with Docker compose              	|
+| 5 	| make image            	| Build Docker image                                      	|
+| 6 	| make publish          	| Publish Docker image to Docker Hub                      	|
+| 7 	| make serve            	| Run Docker container without Docker compose             	|
+| 8 	| make ssh              	| Access Docker container terminal.                       	|
+| 9 	| make stop             	| Stop Docker container                                   	|
 
 ## Useful Tips
 

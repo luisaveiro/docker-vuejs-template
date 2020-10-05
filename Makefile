@@ -10,6 +10,14 @@ clean:
 clean-yarn-cache:
 	docker exec -t -i ${CONTAINER_NAME} yarn cache clean
 
+# Rebuild Docker image and container with Docker compose
+dev-rebuild:
+	docker-compose -f docker-compose.yml up --build
+
+# Start Docker container with Docker compose
+dev-start:
+	docker-compose -f docker-compose.yml up
+
 # Build Docker image
 image:
 	docker build -f docker/Dockerfile -t ${IMAGE_NAME} code
@@ -17,14 +25,6 @@ image:
 # Publish Docker image to Docker Hub
 publish:
 	docker push ${IMAGE_NAME}:latest
-
-# Rebuild Docker image and container with Docker compose
-rebuild-dev-server:
-	docker-compose -f docker-compose.yml up --build
-
-# Start Docker container with Docker compose
-start-dev-server:
-	docker-compose -f docker-compose.yml up
 
 # Run Docker container
 serve:
