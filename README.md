@@ -91,13 +91,13 @@ Your **.env** needs to have the following environment variables.
 
 #### <ins>Running Docker container</ins>
 
-Once you have updated the **.env** as per your requirements. You can run `docker compose up` or use the `make start-dev-server` alias command to create your Docker environment.
+Once you have updated the **.env** as per your requirements. You can run `docker compose up` or use the `make dev-start` alias command to create your Docker environment.
 
 <details>
 <summary><strong>Example of the terminal output</strong></summary>
 
 ```bash
-$ make start-dev-server
+$ make dev-start
 docker-compose -f docker-compose.yml up
 Creating network "front-end" with the default driver
 Creating volume "website.local_node_modules" with default driver
@@ -270,7 +270,7 @@ website.local | }
 website.local exited with code 1
 ```
 
-**[Solution]** re-run `docker-compose up` or `make start-dev-server` alias command to have everything running again.
+**[Solution]** re-run `docker-compose up` or `make dev-start` alias command to have everything running again.
 </details>
 
 <details>
