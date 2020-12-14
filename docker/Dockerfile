@@ -1,5 +1,7 @@
 # Alpine Linux is much smaller than most distribution base images.
-FROM node:14.11.0-alpine3.12
+ARG NODE_VERSION=latest
+
+FROM node:$NODE_VERSION
 
 # Provide default arguments if image was not built by docker compose.
 ARG CLEAN_YARN_CACHE=false

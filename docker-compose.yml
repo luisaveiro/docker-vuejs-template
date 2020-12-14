@@ -15,6 +15,7 @@ services:
         ENABLE_TYPESCRIPT: ${ENABLE_TYPESCRIPT}
         HOST: ${VUE_UI_HOST}
         PROJECT_PATH: ${PROJECT_PATH}
+        NODE_VERSION: ${NODE_VERSION}
     networks: 
       local:
         aliases:
