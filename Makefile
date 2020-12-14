@@ -12,11 +12,11 @@ clean-yarn-cache:
 
 # Rebuild Docker image and container with Docker compose
 dev-rebuild:
-	docker-compose -f docker-compose.yml up --build
+	docker-compose -f docker-compose.yml up --detach --build
 
 # Start Docker container with Docker compose
 dev-start:
-	docker-compose -f docker-compose.yml up
+	docker-compose -f docker-compose.yml up --detach
 
 # Build Docker image
 image:
