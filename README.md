@@ -77,17 +77,18 @@ $ cp .env.example .env
 Your **.env** needs to have the following environment variables.
 
 
-| # 	| Variable          	| Description                                   	| Example Value 	|
-|---	|-------------------	|-----------------------------------------------	|---------------	|
-| 1 	| DOCKER_USERNAME   	| Docker hub username                           	| luisaveiro    	|
-| 2 	| PROJECT_NAME      	| Project name                                  	| website       	|
-| 3 	| CONTAINER_NAME    	| Docker container name                         	| website.local 	|
-| 4 	| IMAGE_NAME        	| Image tag                                     	| website       	|
-| 5 	| PROJECT_PATH      	| Project directory in Docker image & container 	| website       	|
-| 6 	| ENABLE_TYPESCRIPT 	| Add TypeScript support in Docker image        	| true          	|
-| 7 	| NETWORK           	| Docker container network                      	| front-end     	|
-| 8 	| VUE_UI_PORT       	| Port used for the UI server                   	| 8000          	|
-| 9 	| VUE_UI_HOST       	| Host used for the UI server                   	| 0.0.0.0       	|
+| #  	| Variable          	| Description                                   	| Example Value 	|
+|----	|-------------------	|-----------------------------------------------	|---------------	|
+| 1  	| DOCKER_USERNAME   	| Docker hub username                           	| luisaveiro    	|
+| 2  	| PROJECT_NAME      	| Project name                                  	| website       	|
+| 3  	| CONTAINER_NAME    	| Docker container name                         	| website.local 	|
+| 4  	| IMAGE_NAME        	| Image tag                                     	| website       	|
+| 5  	| NODE_VERSION      	| Node Docker Version                           	| latest        	|
+| 6  	| PROJECT_PATH      	| Project directory in Docker image & container 	| website       	|
+| 7  	| ENABLE_TYPESCRIPT 	| Add TypeScript support in Docker image        	| true          	|
+| 8  	| NETWORK           	| Docker container network                      	| front-end     	|
+| 9  	| VUE_UI_PORT       	| Port used for the UI server                   	| 8000          	|
+| 10 	| VUE_UI_HOST       	| Host used for the UI server                   	| 0.0.0.0       	|
 
 #### <ins>Running Docker container</ins>
 
